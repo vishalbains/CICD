@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: "cicd/testing:latest"
+    restart: always
+    ports:
+      - "4010:80"
