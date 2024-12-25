@@ -1,0 +1,23 @@
+name: rack-server
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: cicd  # Assuming your runner is self-hostedd
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and Test
+        run: |
+          docker build -t cicd/testing:latest .
+      - name: Deploy on server
+        run: |
+          # Perform cleanup steps here (e.g., deleting temporary files)
+          docker-compose down
+          docker-compose up -d
+          # Add your cleanup commands here
+          echo 'Your code is tested and deployed successfully on your server 🥳🥳🥳'
